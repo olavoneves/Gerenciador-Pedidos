@@ -7,6 +7,7 @@ import br.com.gerenciadordepedidos.repository.CategoriaRepository;
 import br.com.gerenciadordepedidos.repository.PedidosRepository;
 import br.com.gerenciadordepedidos.repository.ProdutoRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Scanner;
 
@@ -94,6 +95,7 @@ public class ConsoleMainApplication {
     }
 
     public void visualizarPedidos() {
-        pedidosRepository.save()
+        pedido.setData(LocalDate.now());
+        pedido = new Pedido(pedido.getId(), pedido.getData());
     }
 }

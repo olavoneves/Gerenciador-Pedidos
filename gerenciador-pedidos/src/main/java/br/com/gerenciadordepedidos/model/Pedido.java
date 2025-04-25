@@ -24,4 +24,9 @@ public class Pedido {
     public LocalDate getData() {
         return data;
     }
+
+    public Pedido setData(LocalDate data) {
+        this.data = data;
+        return this;
+    }
 }
