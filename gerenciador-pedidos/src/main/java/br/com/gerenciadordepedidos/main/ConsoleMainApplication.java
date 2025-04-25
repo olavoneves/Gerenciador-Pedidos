@@ -8,7 +8,6 @@ import br.com.gerenciadordepedidos.repository.PedidosRepository;
 import br.com.gerenciadordepedidos.repository.ProdutoRepository;
 
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleMainApplication {
@@ -21,10 +20,9 @@ public class ConsoleMainApplication {
     private CategoriaRepository categoriaRepository;
     private PedidosRepository pedidosRepository;
 
-    public ConsoleMainApplication(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, PedidosRepository pedidosRepository) {
+    public ConsoleMainApplication(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository) {
         this.produtoRepository = produtoRepository;
         this.categoriaRepository = categoriaRepository;
-        this.pedidosRepository = pedidosRepository;
     }
 
     public void exibeMenu() {
