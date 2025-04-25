@@ -9,6 +9,10 @@ public class Categoria {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
+    @OneToMany(mappedBy = "categoria")
+    private Produto produto;
+    @ManyToOne
+    private Pedido pedido;
 
     public Categoria() {
     }

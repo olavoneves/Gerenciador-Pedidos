@@ -11,6 +11,8 @@ public class Pedido {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private LocalDate data;
+    @OneToMany(mappedBy = "pedido")
+    private Categoria categoria;
 
     public Pedido() {
     }

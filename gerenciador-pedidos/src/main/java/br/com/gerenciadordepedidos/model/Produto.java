@@ -12,6 +12,8 @@ public class Produto {
     private String nome;
     @Column(name = "valor")
     private double preco;
+    @ManyToOne
+    private Categoria categoria;
 
     public Produto() {
     }
@@ -25,14 +27,29 @@ public class Produto {
         return id;
     }
 
-    public Produto setNome(String nome) {
-        this.nome = nome;
+    public Produto setId(Long id) {
+        this.id = id;
+        return this;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public Produto setCategoria(Categoria categoria) {
+        this.categoria = categoria;
         return this;
     }
 
     public String getNome() {
         return nome;
     }
+
+    public Produto setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
 
     public double getPreco() {
         return preco;
