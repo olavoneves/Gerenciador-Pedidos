@@ -25,7 +25,7 @@ public class GerenciadorDePedidosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		ConsoleMainApplication console;
 		try {
-			console = new ConsoleMainApplication();
+			console = new ConsoleMainApplication(produtoRepository, categoriaRepository, pedidosRepository);
 			console.exibeMenu();
 		} catch (Exception e) {
 			throw new RuntimeException("Erro do método que exibi o menu!");

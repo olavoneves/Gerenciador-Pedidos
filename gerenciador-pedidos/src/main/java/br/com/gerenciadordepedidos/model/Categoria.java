@@ -22,4 +22,9 @@ public class Categoria {
     public String getNome() {
         return nome;
     }
+
+    public Categoria setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
 }

@@ -14,7 +14,6 @@ public class Produto {
     private double preco;
 
     public Produto(Long id, String nome, double preco) {
-        this.id = id;
         this.nome = nome;
         this.preco = preco;
     }
@@ -23,11 +22,21 @@ public class Produto {
         return id;
     }
 
+    public Produto setNome(String nome) {
+        this.nome = nome;
+        return this;
+    }
+
     public String getNome() {
         return nome;
     }
 
     public double getPreco() {
         return preco;
+    }
+
+    public Produto setPreco(double preco) {
+        this.preco = preco;
+        return this;
     }
 }
