@@ -2,6 +2,9 @@ package br.com.gerenciadordepedidos.model;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "produtos")
 public class Produto {
@@ -14,6 +17,10 @@ public class Produto {
     private double preco;
     @ManyToOne
     private Categoria categoria;
+    @ManyToMany(mappedBy = "produto")
+    private List<Pedido> pedido = new ArrayList<>();
+    @ManyToOne
+    private Fornecedor fornecedor;
 
     public Produto() {
     }

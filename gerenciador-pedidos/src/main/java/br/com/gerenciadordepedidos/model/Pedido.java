@@ -3,6 +3,8 @@ package br.com.gerenciadordepedidos.model;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "pedidos")
@@ -13,6 +15,14 @@ public class Pedido {
     private LocalDate data;
     @OneToMany(mappedBy = "pedido")
     private Categoria categoria;
+    @ManyToMany
+    @JoinTable(
+            name = "pedido_produto",
+            joinColumns = @JoinColumn(name = "pedido_id"),
+            inverseJoinColumns = @JoinColumn(name = "produto_id")
+    )
+    private List<Produto> produto = new ArrayList<>();
+
 
     public Pedido() {
     }
