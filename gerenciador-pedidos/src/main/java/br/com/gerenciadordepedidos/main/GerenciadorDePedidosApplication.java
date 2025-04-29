@@ -10,15 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class GerenciadorDePedidosApplication implements CommandLineRunner {
-	private final ProdutoRepository produtoRepository;
-	private final CategoriaRepository categoriaRepository;
-	private final PedidosRepository pedidosRepository;
-
-	public GerenciadorDePedidosApplication(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, PedidosRepository pedidosRepository) {
-		this.produtoRepository = produtoRepository;
-		this.categoriaRepository = categoriaRepository;
-		this.pedidosRepository = pedidosRepository;
-	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(GerenciadorDePedidosApplication.class, args);
@@ -28,7 +19,7 @@ public class GerenciadorDePedidosApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		ConsoleMainApplication console;
 		try {
-			console = new ConsoleMainApplication(produtoRepository, categoriaRepository, pedidosRepository);
+			console = new ConsoleMainApplication();
 			console.exibeMenu();
 		} catch (Exception e) {
 			throw new RuntimeException("Erro do método que exibi o menu!");

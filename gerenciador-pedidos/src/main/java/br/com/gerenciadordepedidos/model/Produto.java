@@ -66,4 +66,12 @@ public class Produto {
         this.preco = preco;
         return this;
     }
+
+    @Override
+    public String toString() {
+        return "*****Produto*****\n" +
+        "nome= '" + nome + '\'' +
+        ", preco= " + preco +
+        ", categoria= " + categoria;
+    }
 }

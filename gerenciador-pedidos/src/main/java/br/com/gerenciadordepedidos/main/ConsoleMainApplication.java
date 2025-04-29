@@ -7,22 +7,35 @@ import br.com.gerenciadordepedidos.repository.CategoriaRepository;
 import br.com.gerenciadordepedidos.repository.PedidosRepository;
 import br.com.gerenciadordepedidos.repository.ProdutoRepository;
 
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class ConsoleMainApplication {
     private Scanner scanner;
     private Categoria categoria;
+    private List<Categoria> listaCategoria = new ArrayList<>();
     private Produto produto;
+    private List<Produto> listaProduto = new ArrayList<>();
     private Pedido pedido;
+    private List<Pedido> listaPedidos = new ArrayList<>();
+
+    public ConsoleMainApplication() {
+
+    }
 
     private ProdutoRepository produtoRepository;
-    private CategoriaRepository categoriaRepository;
-    private PedidosRepository pedidosRepository;
-
-    public ConsoleMainApplication(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, PedidosRepository pedidosRepository) {
+    public ConsoleMainApplication(ProdutoRepository produtoRepository) {
         this.produtoRepository = produtoRepository;
+    }
+
+    private CategoriaRepository categoriaRepository;
+    public ConsoleMainApplication(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
+    }
+
+    private PedidosRepository pedidosRepository;
+    public ConsoleMainApplication(PedidosRepository pedidosRepository) {
         this.pedidosRepository = pedidosRepository;
     }
 
@@ -57,11 +70,9 @@ public class ConsoleMainApplication {
                         
                           > 0. Sair
                         *****************************************************
-                        
-                          > 
                         """;
 
-                System.out.print(menu);
+                System.out.print(menu + "\n > ");
                 opcao = scanner.nextInt();
                 scanner.nextLine();
 
@@ -140,6 +151,8 @@ public class ConsoleMainApplication {
         produto.setNome(scanner.nextLine());
         System.out.print("Digite o preço do produto: ");
         produto.setPreco(scanner.nextDouble());
+        scanner.nextLine();
+
         produto = new Produto(produto.getNome(), produto.getPreco());
         produtoRepository.save(produto);
 
