@@ -198,12 +198,12 @@ public class ConsoleMainApplication {
     }
 
     public void produtosPorCategoriaCres() {
-        listaProduto = produtoRepository.findByCategoriaContainingIgnoreCaseAndByOrderByPreco(categoria);
+        listaProduto = produtoRepository.findByCategoriaOrderByPrecoAsc(categoria);
         listaProduto.forEach(System.out::println);
     }
 
     public void produtosPorCategoriaDesc() {
-        listaProduto = produtoRepository.findByCategoriaContainingIgnoreCaseAndByOrderByPrecoDesc(categoria);
+        listaProduto = produtoRepository.findByCategoriaOrderByPrecoDesc(categoria);
         listaProduto.forEach(System.out::println);
     }
 
