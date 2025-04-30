@@ -25,11 +25,6 @@ public class Produto {
     public Produto() {
     }
 
-    public Produto(String nome, double preco) {
-        this.nome = nome;
-        this.preco = preco;
-    }
-
     public Long getId() {
         return id;
     }

@@ -11,15 +11,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class GerenciadorDePedidosApplication implements CommandLineRunner {
 
+	@Autowired
+	private ConsoleMainApplication console;
+
 	public static void main(String[] args) {
 		SpringApplication.run(GerenciadorDePedidosApplication.class, args);
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		ConsoleMainApplication console;
 		try {
-			console = new ConsoleMainApplication();
 			console.exibeMenu();
 		} catch (Exception e) {
 			throw new RuntimeException("Erro do método que exibi o menu!");

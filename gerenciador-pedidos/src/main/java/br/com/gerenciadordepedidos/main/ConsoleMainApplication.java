@@ -6,36 +6,29 @@ import br.com.gerenciadordepedidos.model.Produto;
 import br.com.gerenciadordepedidos.repository.CategoriaRepository;
 import br.com.gerenciadordepedidos.repository.PedidosRepository;
 import br.com.gerenciadordepedidos.repository.ProdutoRepository;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+@Component
 public class ConsoleMainApplication {
     private Scanner scanner;
-    private Categoria categoria;
+    private Categoria categoria = new Categoria();
     private List<Categoria> listaCategoria = new ArrayList<>();
-    private Produto produto;
+    private Produto produto = new Produto();
     private List<Produto> listaProduto = new ArrayList<>();
     private Pedido pedido;
     private List<Pedido> listaPedidos = new ArrayList<>();
 
-    public ConsoleMainApplication() {
+    private final ProdutoRepository produtoRepository;
+    private final CategoriaRepository categoriaRepository;
+    private final PedidosRepository pedidosRepository;
 
-    }
-
-    private ProdutoRepository produtoRepository;
-    public ConsoleMainApplication(ProdutoRepository produtoRepository) {
+    public ConsoleMainApplication(ProdutoRepository produtoRepository, CategoriaRepository categoriaRepository, PedidosRepository pedidosRepository) {
         this.produtoRepository = produtoRepository;
-    }
-
-    private CategoriaRepository categoriaRepository;
-    public ConsoleMainApplication(CategoriaRepository categoriaRepository) {
         this.categoriaRepository = categoriaRepository;
-    }
-
-    private PedidosRepository pedidosRepository;
-    public ConsoleMainApplication(PedidosRepository pedidosRepository) {
         this.pedidosRepository = pedidosRepository;
     }
 
@@ -153,7 +146,7 @@ public class ConsoleMainApplication {
         produto.setPreco(scanner.nextDouble());
         scanner.nextLine();
 
-        produto = new Produto(produto.getNome(), produto.getPreco());
+        listaProduto.add(produto);
         produtoRepository.save(produto);
 
         System.out.println("Produto Inserido!");
@@ -162,30 +155,38 @@ public class ConsoleMainApplication {
     public void inserirCategoria() {
         System.out.print("Digite a categoria que deseja inserir: ");
         categoria.setNome(scanner.nextLine());
-        categoria = new Categoria(categoria.getNome());
+
+        listaCategoria.add(categoria);
         categoriaRepository.save(categoria);
 
         System.out.println("Categoria Inserida!");
     }
 
     public void visualizarProdutos() {
-
+        listaProduto.forEach(System.out::println);
     }
 
     private void visualizarProdutosComCategoria() {
-
+        listaProduto = produtoRepository.findByCategoriaContainingIgnoreCase(categoria);
+        listaProduto.forEach(System.out::println);
     }
 
     public void produtosMaisCaros() {
-
+        listaProduto = produtoRepository.findTop10ByOrderByPrecoDesc(listaProduto);
+        listaProduto.forEach(System.out::println);
     }
 
     public void produtosMaisBaratos() {
-
+        listaProduto = produtoRepository.findTop10ByOrderByPreco(listaProduto);
+        listaProduto.forEach(System.out::println);
     }
 
     public void produtosEspecificos() {
+        System.out.print("Digite o produto: ");
+        produto.setNome(scanner.nextLine());
 
+        listaProduto = produtoRepository.findByNomeContainingIgnoreCase(produto.getNome());
+        listaProduto.forEach(System.out::println);
     }
 
     public void pedidosSemDataEntrega() {
@@ -197,11 +198,13 @@ public class ConsoleMainApplication {
     }
 
     public void produtosPorCategoriaCres() {
-
+        listaProduto = produtoRepository.findByCategoriaContainingIgnoreCaseAndByOrderByPreco(categoria);
+        listaProduto.forEach(System.out::println);
     }
 
     public void produtosPorCategoriaDesc() {
-
+        listaProduto = produtoRepository.findByCategoriaContainingIgnoreCaseAndByOrderByPrecoDesc(categoria);
+        listaProduto.forEach(System.out::println);
     }
 
     public void quantidadeProdutosPorCategoria() {
