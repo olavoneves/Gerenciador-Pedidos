@@ -36,7 +36,7 @@ public class ConsoleMainApplication {
         try {
             scanner = new Scanner(System.in);
             int opcao = -1;
-            while (opcao != 19) {
+            while (opcao != 0) {
                 var menu = """
                         *****************************************************
                         *                      OPÇÕES                       *

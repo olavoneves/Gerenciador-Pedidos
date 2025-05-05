@@ -11,7 +11,6 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(unique = true)
     private String nome;
     @Column(name = "valor")
     private double preco;
@@ -31,6 +30,24 @@ public class Produto {
 
     public Produto setId(Long id) {
         this.id = id;
+        return this;
+    }
+
+    public List<Pedido> getPedido() {
+        return pedido;
+    }
+
+    public Produto setPedido(List<Pedido> pedido) {
+        this.pedido = pedido;
+        return this;
+    }
+
+    public Fornecedor getFornecedor() {
+        return fornecedor;
+    }
+
+    public Produto setFornecedor(Fornecedor fornecedor) {
+        this.fornecedor = fornecedor;
         return this;
     }
 
